@@ -18,14 +18,18 @@ class App extends Component {
   getReservations = () => {
     fetch('http://localhost:3001/api/v1/reservations')
     .then(results => results.json())
-    .then(data => this.updateRes(data))
+    .then(data => this.updateState(data))
     .catch(error => console.log(error))
   }
 
-  updateRes = (reservations) => {
+  updateState = (reservations) => {
     this.setState({
       reservations
     })
+  }
+
+  makeNewRes = (reservation) => {
+    console.log(reservation)
   }
 
   render() {
@@ -34,7 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
-        <ResForm />
+        <ResForm makeNewRes={this.makeNewRes} />
         <ResContainer reservations={reservations} />
       </div>
     )

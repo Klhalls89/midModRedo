@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class ResForm extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       date: '',
@@ -13,11 +13,17 @@ class ResForm extends Component {
 
   handelSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
+    this.props.makeNewRes(this.state)
+    this.setState({ 
+      name: '',
+      date: '',
+      time: '',
+      number: 0})
   }
 
 
-  changeState = (name,value) => {
+  changeState = (e) => {
+    const { name, value } = e.target;
     this.setState({
       [name]:value
     })
@@ -28,10 +34,34 @@ class ResForm extends Component {
     return(
       <div>
         <form onSubmit={this.handelSubmit}>
-          <input name='name' onChange={this.changeState} value={name} type="text" />
-          <input name='date' onChange={this.changeState} value={date} type="text" />
-          <input name='time' onChange={this.changeState} value={time} type="text" />
-          <input name='number'onChange={this.changeState} value={number} type="text" />
+          <input 
+            type="text" 
+            name='name' 
+            value={name} 
+            placeholder="Name"
+            onChange={this.changeState} 
+          />
+          <input 
+            type="text" 
+            name='date' 
+            value={date} 
+            placeholder="Date"
+            onChange={this.changeState} 
+          />
+           <input 
+            type="text" 
+            name='time' 
+            value={time} 
+            placeholder="Time"
+            onChange={this.changeState} 
+          />
+           <input 
+            type="text" 
+            name='number' 
+            value={number} 
+            placeholder="Number of peeople"
+            onChange={this.changeState} 
+          />
           <button>submit</button>
         </form>
       </div>

@@ -1,9 +1,13 @@
 import React from 'react';
 
-const ResCard = () => {
+const ResCard = (props) => {
+  let {name, date, number, time} = props
   return(
-    <div>
-      ResCard
+    <div className='card'>
+      <h3>{name}</h3>
+      <p>{date}</p>
+      <p>{number}</p>
+      <p>{time}</p>
     </div>
   )
 }

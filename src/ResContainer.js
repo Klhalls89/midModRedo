@@ -1,11 +1,13 @@
 import React from 'react';
 import ResCard from './ResCard';
 
-const ResContainer = () => {
+const ResContainer = (props) => {
+  let newCards = props.reservations.map(res => {
+    return <ResCard {...res} key={res.id} />
+  })
   return(
-    <div>
-      ResContainer
-      <ResCard />
+    <div className='cardContainer'>
+      {newCards}
     </div>
   )
 }

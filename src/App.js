@@ -16,7 +16,8 @@ class App extends Component {
   }
 
   getReservations = () => {
-    fetch('http://localhost:3001/api/v1/reservations')
+    let url = 'http://localhost:3001/api/v1/reservations'
+    fetch(url)
     .then(results => results.json())
     .then(data => this.updateState(data))
     .catch(error => console.log(error))
@@ -28,8 +29,25 @@ class App extends Component {
     })
   }
 
-  makeNewRes = (reservation) => {
-    console.log(reservation)
+  makeNewRes = (res) => {
+    let newRes = {...res, id:Date.now()}
+    let newReservations = [...this.state.reservations, newRes]
+    this.setState({
+      reservations: newReservations
+    })
+  }
+
+  postReservations = () => {
+    let url = 'http://localhost:3001/api/v1/reservations'
+    let data = this.state
+    const options = { method: 'POST', 
+                      body: JSON.stringify(data), 
+                      headers: {'Content-Type': 'application/json'}
+  } 
+    fetch (url, options)
+    .then(results => results.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
   }
 
   render() {

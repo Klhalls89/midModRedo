@@ -18,7 +18,8 @@ class ResForm extends Component {
       name: '',
       date: '',
       time: '',
-      number: 0})
+      number: 0
+    })
   }
 
 
